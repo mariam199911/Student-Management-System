@@ -1,7 +1,9 @@
 import java.util.List;
+import java.util.ArrayList;
 
 public class Teacher {
-
+    private List<Student> students = new ArrayList<Student>();
+    private List<Assignment> assignments=new ArrayList<Assignment>();
     private  String id;
     private String name;
     private String email;
@@ -60,19 +62,25 @@ public class Teacher {
 
     }
 
-    public List<Student> getStudentsInCourse(String CourseID){
-
-    }
+//    public List<Student> getStudentsInCourse(String CourseID){
+//
+//    }
     public void getAllClasses(){
 
     }
 
     public Student getStudentData(String studentId){
-
+        Student resStudent= new Student ("null" , "null" , "null" , "null", "null" , "null" , "null");
+        for (int i = 0; i < students.size(); i++) {
+            if (students.get(i).getId() == studentId ) {
+                resStudent = students.get(i);
+            }
+        }
+        return resStudent;
     }
 
     public void addAssignment(Assignment assignment){
-
+        assignments.add(assignment);
     }
 
     public void submitStudentsAttendance(List<CourseAttendence> courseAttendences){

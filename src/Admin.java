@@ -47,6 +47,15 @@ public class Admin {
     public void setMobileNum(String mobileNum) {
         this.mobileNum = mobileNum;
     }
+
+    public List<Teacher> getTeachersList() {
+        return teachersList;
+    }
+
+    public List<Student> getStudentsList() {
+        return studentsList;
+    }
+
     @Override
     public String toString() {
         return "Admin{" +
@@ -95,23 +104,42 @@ public class Admin {
         }
     }
 
-    public void addStudent(){
-
+    public void addStudent(Student std){
+        studentsList.add(std);
     }
 
-    public void removeStudent(){
-
+    public void removeStudent(String studentId){
+        for (int i = 0; i < studentsList.size(); i++) {
+            if (studentId == studentsList.get(i).getId())
+            {
+                studentsList.remove(i);
+            }
+        }
     }
 
     public void viewAllStudents(){
-
+        for (Student student: studentsList) {
+            System.out.println(student);
+        }
     }
 
-    public void viewStudentDetails(){
-
+    public void viewStudentDetails(String studentId){
+        for (int i = 0; i < studentsList.size(); i++) {
+            if (studentId == studentsList.get(i).getId())
+            {
+                System.out.println(studentsList.get(i));
+            }
+        }
     }
 
-    public void updateStudentData(){
+    public void updateStudentData(Student newStudentData){
+        for (int i = 0; i < studentsList.size(); i++) {
+            if (newStudentData.getId() == studentsList.get(i).getId())
+            {
+                studentsList.remove(i);
+                studentsList.add(newStudentData);
+            }
+        }
 
     }
 

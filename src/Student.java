@@ -77,6 +77,20 @@ public class Student {
         this.address = address;
     }
 
+    @Override
+    public String toString() {
+        return "Student{" +
+
+                ", id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", mobileNum='" + mobileNum + '\'' +
+                ", gender='" + gender + '\'' +
+                ", age='" + age + '\'' +
+                ", address='" + address + '\'' +
+                '}';
+    }
+
     public void viewEnrolledCourses (List<CourseAttendence> courses) {
 
         List<CourseAttendence> EnrolledCourses =new ArrayList<CourseAttendence>();

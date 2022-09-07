@@ -14,6 +14,16 @@ public class Assignment {
         this.courseId = courseId;
     }
 
+    @Override
+    public String toString() {
+        return "Assignment{" +
+                "assignmentId='" + assignmentId + '\'' +
+                ", description='" + description + '\'' +
+                ", courseId='" + courseId + '\'' +
+                ", dueDate=" + dueDate +
+                '}';
+    }
+
     public String getID() {
         return assignmentId;
     }

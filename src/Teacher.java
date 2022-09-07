@@ -2,7 +2,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Teacher {
-    private List<Student> students = new ArrayList<Student>();
+//    private List<Student> students = new ArrayList<Student>();
     private List<Assignment> assignments=new ArrayList<Assignment>();
     private  String id;
     private String name;
@@ -48,6 +48,10 @@ public class Teacher {
         this.mobileNum = mobileNum;
     }
 
+    public List<Assignment> getAssignments() {
+        return assignments;
+    }
+
     @Override
     public String toString() {
         return "Teacher{" +
@@ -69,7 +73,7 @@ public class Teacher {
 
     }
 
-    public Student getStudentData(String studentId){
+    public Student getStudentData(List<Student> students, String studentId){
         Student resStudent= new Student ("null" , "null" , "null" , "null", "null" , "null" , "null");
         for (int i = 0; i < students.size(); i++) {
             if (students.get(i).getId() == studentId ) {

@@ -85,13 +85,18 @@ public class Admin {
         }
     }
 
-    public void viewTeacherDetails(String teacherId){
+    public Teacher getTeacherDetails(String teacherId){
         for (int i = 0; i < teachersList.size(); i++) {
-            if (teacherId == teachersList.get(i).getId())
+            if (teacherId.equals(teachersList.get(i).getId()))
             {
                 System.out.println(teachersList.get(i));
+                return teachersList.get(i);
+            }else {
+                System.out.println("No teacher with this ID");
+                return null;
             }
         }
+        return null;
     }
 
     public void updateTeacherData(Teacher newTeacherData){

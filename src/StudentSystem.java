@@ -3,9 +3,9 @@ import java.util.List;
 
 public class StudentSystem {
     public static void main(String[] args) {
+        //#####################################  Admin  #######################################################
         //Admin of the system
         Admin Ad1 = new Admin("1","Reda","reda33@gmail.com","01024051332");
-
         //make admin Ad1 add some students and teachers
         Ad1.addStudent(new Student("1","mariam","mariammohammad390@gmail.com","01024051445","female","23","cairo,egypt"));
         Ad1.addStudent(new Student("2","Mohamed","mohammad3@gmail.com","01341051445","male","15","cairo,egypt"));
@@ -25,8 +25,25 @@ public class StudentSystem {
         Ad1.updateStudentData(new Student("1","mariam","mariam22@gmail.com","01024051445","female","23","cairo,egypt"));
         System.out.println("View All Students after updating data of student with id =1 change the email");
         Ad1.viewAllStudents();
+        //#####################################  Teacher  #######################################################
+        //get teacher with id =2
+        System.out.println("Details of Teacher with id = 2:");
+        Teacher t1 = Ad1.getTeacherDetails("2");
+        //get details of student with id = 1
+        System.out.println("Details of student with id = 1:");
+        Student sid1 = t1.getStudentData(Ad1.getStudentsList(),"1");
+        System.out.println(sid1);
+        // make teacher with ide = 1 add an assignment
+        t1.addAssignment(new Assignment("1" , "description1" , "1" ));
+        //view all assignment added by teacher with id =2
+        System.out.println("view all assignment:");
+        System.out.println(t1.getAssignments());
+
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         System.out.println();
+        System.out.println();
+
+
         Student s1 = new Student("1","Mariam","mariammohammad390@gmail.com","01024051445","female","23","cairo,egypt");
         Student s2 = new Student("2","Mohamed","mohammad3@gmail.com","01341051445","male","15","cairo,egypt");
         CourseAttendence c1 = new CourseAttendence("1" , "10" , s1.getId() , "done");

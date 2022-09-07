@@ -3,6 +3,7 @@ import java.util.List;
 
 public class Admin {
     private List<Teacher> teachersList =new ArrayList<Teacher>();
+    private List<Student> studentsList =new ArrayList<Student>();
     private  String id;
     private String name;
     private String email;
@@ -58,9 +59,15 @@ public class Admin {
     public void addTeacher(Teacher teacher){
         teachersList.add(teacher);
     }
-    /////////////////////////////////////////////not sure ////////////////////////////////////////////////
+
+
     public void removeTeacher(String teacherId){
-        teachersList.remove(teacherId);
+        for (int i = 0; i < teachersList.size(); i++) {
+            if (teacherId == teachersList.get(i).getId())
+            {
+                teachersList.remove(i);
+            }
+        }
     }
 
     public void viewAllTeachers(){
@@ -78,8 +85,14 @@ public class Admin {
         }
     }
 
-    public void updateTeacherData(){
-
+    public void updateTeacherData(Teacher newTeacherData){
+        for (int i = 0; i < teachersList.size(); i++) {
+            if (newTeacherData.getId() == teachersList.get(i).getId())
+            {
+                teachersList.remove(i);
+                teachersList.add(newTeacherData);
+            }
+        }
     }
 
     public void addStudent(){

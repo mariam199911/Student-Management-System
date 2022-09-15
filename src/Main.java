@@ -1,12 +1,23 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Main {
+    public static LocalDate dateInput(String userInput) {
+
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("M/d/yyyy");
+        LocalDate date = LocalDate.parse(userInput, dateFormat);
+
+
+        System.out.println(date);
+        return date ;
+    }
     public static void main(String[] args) {
         Database db = Database.getInstance();
 
         Admin Ad1 = new Admin("1", "Reda", "reda33@gmail.com", "01024051332");
-        Teacher t = new Teacher("1","mariam","m@m.com","01024051445");
-        Student s = new Student("1","hager","h@h.com","01024051446","female","21","efef");
+        Teacher t = new Teacher("12","mariam","m@m.com","01024051445");
+        Student s = new Student("12","hager","h@h.com","01024051446","female","21","efef");
         Ad1.addTeacher(t);
         Ad1.addStudent(s);
 
@@ -214,7 +225,19 @@ public class Main {
                         }
                         break;
                         case 7: {
-                            System.out.print("to be implemented\n");
+                            //String courseId, String studentId, String status
+                            System.out.print("Please Enter course Id\n");
+                            String courseId = sc.next();
+                            System.out.print("Please Enter student Id\n");
+                            String studentId = sc.next();
+                            System.out.print("Please Enter status[available/busy/done]\n");
+                            String status = sc.next();
+                            System.out.print("Enter a date (like 3/3/17): \n");
+                            String datestring = sc.next();
+                            LocalDate newDate = dateInput(datestring);
+                            teacher.submitStudentsAttendance(new CourseAttendence(courseId,studentId,status));
+
+                            System.out.print("Attendance Submitted Successfully\n");
                         }
                         break;
                         default:

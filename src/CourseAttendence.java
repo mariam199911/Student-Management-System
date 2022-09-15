@@ -2,7 +2,6 @@ import java.time.LocalDate;
 
 public class CourseAttendence {
 
-    private String id;
     private String courseId;
     private String studentId;
     private LocalDate attendanceDate;
@@ -11,7 +10,6 @@ public class CourseAttendence {
     @Override
     public String toString() {
         return "Course Attendence{" +
-                "id='" + id + '\'' +
                 ", courseId='" + courseId + '\'' +
                 ", studentId='" + studentId + '\'' +
                 ", attendanceDate=" + attendanceDate +
@@ -19,16 +17,13 @@ public class CourseAttendence {
                 '}';
     }
 
-    public CourseAttendence(String id, String courseId, String studentId, String status) {
-        this.id = id;
+    public CourseAttendence( String courseId, String studentId, String status) {
         this.courseId = courseId;
         this.studentId = studentId;
         this.status = status;
     }
 
-    public String getID() {
-        return id;
-    }
+
     public String getStudentID() {
         return studentId;
     }
@@ -41,9 +36,7 @@ public class CourseAttendence {
     public LocalDate getAttendanceDate() {
         return attendanceDate;
     }
-    public void setID(String attendanceID) {
-        id=attendanceID;
-    }
+
     public void setStudentID(String SID) {
         studentId =SID;
     }
@@ -60,3 +53,4 @@ public class CourseAttendence {
 //        System.out.println("CourseAttendence Class");
 //    }
 }
+

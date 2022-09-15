@@ -13,6 +13,8 @@ public class Database {
 
     protected List<Student> students=new ArrayList<Student>();
     protected List<Teacher> teachers=new ArrayList<Teacher>();
+//Any one can remove these data , you did not uses the benefit  of encapsulation
+// Kindly make arraies private and provide methods here 
 
 
     protected ArrayList<Courses> courses=new ArrayList<Courses>();

@@ -10,7 +10,7 @@ public class CourseAttendence {
 
     @Override
     public String toString() {
-        return "CourseAttendence{" +
+        return "Course Attendence{" +
                 "id='" + id + '\'' +
                 ", courseId='" + courseId + '\'' +
                 ", studentId='" + studentId + '\'' +

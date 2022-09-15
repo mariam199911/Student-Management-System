@@ -2,8 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Admin {
-    private List<Teacher> teachersList =new ArrayList<Teacher>();
-    private List<Student> studentsList =new ArrayList<Student>();
+//    private List<Teacher> teachersList =new ArrayList<Teacher>();
+//    private List<Student> studentsList =new ArrayList<Student>();
     private  String id;
     private String name;
     private String email;
@@ -49,11 +49,11 @@ public class Admin {
     }
 
     public List<Teacher> getTeachersList() {
-        return teachersList;
+        return Database.getInstance().teachers;
     }
 
     public List<Student> getStudentsList() {
-        return studentsList;
+        return Database.getInstance().students;
     }
 
     @Override
@@ -66,31 +66,31 @@ public class Admin {
                 '}';
     }
     public void addTeacher(Teacher teacher){
-        teachersList.add(teacher);
+        Database.getInstance().teachers.add(teacher);
     }
 
 
     public void removeTeacher(String teacherId){
-        for (int i = 0; i < teachersList.size(); i++) {
-            if (teacherId == teachersList.get(i).getId())
+        for (int i = 0; i < Database.getInstance().teachers.size(); i++) {
+            if (teacherId.equals(Database.getInstance().teachers.get(i).getId()))
             {
-                teachersList.remove(i);
+                Database.getInstance().teachers.remove(i);
             }
         }
     }
 
     public void viewAllTeachers(){
-        for (Teacher teacher: teachersList) {
+        for (Teacher teacher: Database.getInstance().teachers) {
             System.out.println(teacher);
         }
     }
 
     public Teacher getTeacherDetails(String teacherId){
-        for (int i = 0; i < teachersList.size(); i++) {
-            if (teacherId.equals(teachersList.get(i).getId()))
+        for (int i = 0; i < Database.getInstance().teachers.size(); i++) {
+            if (teacherId.equals(Database.getInstance().teachers.get(i).getId()))
             {
-                System.out.println(teachersList.get(i));
-                return teachersList.get(i);
+                System.out.println(Database.getInstance().teachers.get(i));
+                return Database.getInstance().teachers.get(i);
             }else {
                 System.out.println("No teacher with this ID");
                 return null;
@@ -100,49 +100,54 @@ public class Admin {
     }
 
     public void updateTeacherData(Teacher newTeacherData){
-        for (int i = 0; i < teachersList.size(); i++) {
-            if (newTeacherData.getId() == teachersList.get(i).getId())
+        for (int i = 0; i < Database.getInstance().teachers.size(); i++) {
+            if (newTeacherData.getId().equals(Database.getInstance().teachers.get(i).getId()))
             {
-                teachersList.remove(i);
-                teachersList.add(newTeacherData);
+                Database.getInstance().teachers.remove(i);
+                Database.getInstance().teachers.add(newTeacherData);
             }
         }
     }
 
     public void addStudent(Student std){
-        studentsList.add(std);
+        Database.getInstance().students.add(std);
     }
 
     public void removeStudent(String studentId){
-        for (int i = 0; i < studentsList.size(); i++) {
-            if (studentId == studentsList.get(i).getId())
+        for (int i = 0; i < Database.getInstance().students.size(); i++) {
+            if (studentId.equals(Database.getInstance().students.get(i).getId()))
             {
-                studentsList.remove(i);
+                Database.getInstance().students.remove(i);
             }
         }
     }
 
     public void viewAllStudents(){
-        for (Student student: studentsList) {
+        for (Student student: Database.getInstance().students) {
             System.out.println(student);
         }
     }
 
-    public void viewStudentDetails(String studentId){
-        for (int i = 0; i < studentsList.size(); i++) {
-            if (studentId == studentsList.get(i).getId())
+    public Student getStudentDetails(String studentId){
+        for (int i = 0; i < Database.getInstance().students.size(); i++) {
+            if (studentId.equals(Database.getInstance().students.get(i).getId()))
             {
-                System.out.println(studentsList.get(i));
+                System.out.println(Database.getInstance().students.get(i));
+                return Database.getInstance().students.get(i);
+            }else {
+                System.out.println("No student with this ID");
+                return null;
             }
         }
+        return null;
     }
 
     public void updateStudentData(Student newStudentData){
-        for (int i = 0; i < studentsList.size(); i++) {
-            if (newStudentData.getId() == studentsList.get(i).getId())
+        for (int i = 0; i < Database.getInstance().students.size(); i++) {
+            if (newStudentData.getId() .equals( Database.getInstance().students.get(i).getId()))
             {
-                studentsList.remove(i);
-                studentsList.add(newStudentData);
+                Database.getInstance().students.remove(i);
+                Database.getInstance().students.add(newStudentData);
             }
         }
 

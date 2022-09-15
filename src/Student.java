@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Student {
-    private List<AssignmentSubmission> submissionList =new ArrayList<AssignmentSubmission>();
     private String id;
     private String name;
     private String email;
@@ -90,38 +89,47 @@ public class Student {
                 ", address='" + address + '\'' +
                 '}';
     }
-
-    public void viewEnrolledCourses (List<CourseAttendence> courses) {
-
-        List<CourseAttendence> EnrolledCourses =new ArrayList<CourseAttendence>();
-        for (int i = 0; i < courses.size(); i++) {
-            if (id == courses.get(i).getStudentID())
-            {
-                EnrolledCourses.add(courses.get(i));
-            }
+    public void enrollCourse (Courses course) {
+        if(Database.getInstance().student_courses.containsKey(this.id)){
+            Database.getInstance().student_courses.get(this.id).add(course);
+        }else {
+            ArrayList<Courses> coursesList= new ArrayList<Courses>();
+            coursesList.add(course);
+            Database.getInstance().student_courses.put(this.id,coursesList);
         }
-        for (CourseAttendence c :EnrolledCourses) {
+        //////////////////////////////////////////////////////////////////////
+        if(Database.getInstance().course_students.containsKey(course.getId())){
+            Database.getInstance().course_students.get(course.getId()).add(this);
+        }else {
+            ArrayList<Student> studentsList= new ArrayList<Student>();
+            studentsList.add(this);
+            Database.getInstance().course_students.put(course.getId(),studentsList);
+        }
+    }
+
+    public void viewEnrolledCourses () {
+        if(Database.getInstance().student_courses.containsKey(this.id)){
+            for (Courses c :Database.getInstance().student_courses.get(this.id)) {
             System.out.println(c);
+        }
+        }else {
+            System.out.println("No Enrolled Courses");
         }
     }
 
     public void viewAssignments (String courseId) {
-
-        List<AssignmentSubmission> reqAssignments=new ArrayList<AssignmentSubmission>();
-        for (int i = 0; i < submissionList.size(); i++) {
-            if (courseId == submissionList.get(i).getCorseID() && id == submissionList.get(i).getStdID() )
-            {
-                reqAssignments.add(submissionList.get(i));
+        if(Database.getInstance().course_assignments.containsKey(courseId)){
+            for (Assignment c :Database.getInstance().course_assignments.get(courseId)) {
+                System.out.println(c);
             }
-        }
-        for (AssignmentSubmission c :reqAssignments) {
-            System.out.println(c);
+        }else {
+            System.out.println("No Assignments to show");
         }
         //return reqAssignments;
     }
 
-    public void submitAssignment (String assignmentId,String courseId,String Content) {
-        submissionList.add(new AssignmentSubmission(assignmentId ,id , courseId, Content));
+    public void submitAssignment (AssignmentSubmission assignmentSubmission) {
+        Database.getInstance().assignment_submissions.add(assignmentSubmission);
     }
 
 

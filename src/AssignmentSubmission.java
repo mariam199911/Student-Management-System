@@ -8,11 +8,12 @@ public class AssignmentSubmission {
     private String assignmentContentSubmitted;
     private float assignmentMarks = 0;
 
-    public AssignmentSubmission(String assignmentId, String studentId, String courseId, String assignmentContentSubmitted) {
+    public AssignmentSubmission(String assignmentId, String studentId, String courseId, String assignmentContentSubmitted,float assignmentMarks) {
         this.assignmentId = assignmentId;
         this.studentId = studentId;
         this.courseId = courseId;
         this.assignmentContentSubmitted = assignmentContentSubmitted;
+        this.assignmentMarks=assignmentMarks;
     }
 
     @Override

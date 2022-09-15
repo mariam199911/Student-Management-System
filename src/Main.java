@@ -1,15 +1,19 @@
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Main {
     public static LocalDate dateInput(String userInput) {
-
+        LocalDate date;
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("M/d/yyyy");
-        LocalDate date = LocalDate.parse(userInput, dateFormat);
+        try {
+            date = LocalDate.parse(userInput, dateFormat);
+        }catch (NumberFormatException e){
+            System.out.println("Please enter valid date");
+            return null;
+        }
 
-
-        System.out.println(date);
         return date ;
     }
     public static void main(String[] args) {
@@ -235,7 +239,12 @@ public class Main {
                             System.out.print("Enter a date (like 3/3/17): \n");
                             String datestring = sc.next();
                             LocalDate newDate = dateInput(datestring);
-                            teacher.submitStudentsAttendance(new CourseAttendence(courseId,studentId,status));
+                            try {
+                                teacher.submitStudentsAttendance(new CourseAttendence(courseId,studentId,status));
+                            }catch (ArrayStoreException e){
+                                System.out.println("can't submit Student Attendance");
+                            }
+
 
                             System.out.print("Attendance Submitted Successfully\n");
                         }
@@ -294,7 +303,11 @@ public class Main {
                             System.out.print("Please Enter assignment content\n");
                             sc.nextLine();
                             String content = sc.nextLine();
-                            student.submitAssignment(new AssignmentSubmission(assignmentId,student.getId(),courseId,content ));
+                            System.out.print("Please Enter assignment mark like [12.6]\n");
+                            float mark = sc.nextFloat();
+                            AssignmentSubmission assignmentSubmission = new AssignmentSubmission(assignmentId,student.getId(),courseId,content,mark);
+                            student.submitAssignment(assignmentSubmission);
+                            System.out.println(assignmentSubmission+"\n"+"submitted successfully"+"\n");
                         }
                         break;
                         default:

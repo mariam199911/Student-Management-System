@@ -74,19 +74,25 @@ public class Teacher {
     }
 
     public void viewStudentsAssignedCourses(){
-        for (String it: Database.getInstance().course_students.keySet()) {
-//            String key = ;
-            System.out.println("Course id: "+"\n"+it);
-            System.out.println("Course Students: "+"\n");
-            List<Student> stList = Database.getInstance().course_students.get(it);
-            for (Student s : stList){
-                System.out.println(s);
+        if(Database.getInstance().course_students.isEmpty()){
+            System.out.println("No Students Assigned Courses to view");
+        }else {
+            for (String it: Database.getInstance().course_students.keySet()) {
+                System.out.println("Course id: "+it);
+                System.out.println("Course Students: ");
+                List<Student> stList = Database.getInstance().course_students.get(it);
+                for (Student s : stList){
+                    System.out.println(s);
+                }
             }
         }
     }
 
     public void getStudentsInCourse(String CourseID){
-        if(Database.getInstance().course_students.containsKey(CourseID)){
+        if(Database.getInstance().course_students.isEmpty()){
+            System.out.println("No available data to show");
+        }
+        else if(Database.getInstance().course_students.containsKey(CourseID)){
             List<Student> stList = Database.getInstance().course_students.get(CourseID);
             for (Student s : stList){
                 System.out.println(s);

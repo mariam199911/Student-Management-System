@@ -16,6 +16,14 @@ public class Main {
 
         return date ;
     }
+
+
+
+// Main method must be refactored to apply the simple factory design pattern here
+//
+
+
+
     public static void main(String[] args) {
         Database db = Database.getInstance();
 
@@ -45,6 +53,10 @@ public class Main {
                     int b = sc.nextInt();
                     switch (b) {
                         case 1: {
+
+// Should be extracted to a method  will be used here and in update block
+
+
                             System.out.print("Please Enter teacher id\n");
                             String id = sc.next();
                             System.out.print("Please Enter teacher name\n");
@@ -67,7 +79,12 @@ public class Main {
                         break;
                         case 3:
                             System.out.println("View All Teachers");
-                            Ad1.viewAllTeachers();
+                          
+// You should define a class responsible for dealing with admin data
+// This class will provide you with the data
+// Should create another class th display tat content  , as util functionality
+
+  Ad1.viewAllTeachers();
                             System.out.println();
                             break;
                         case 4: {

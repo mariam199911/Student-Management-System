@@ -20,8 +20,8 @@ public class Main {
         Database db = Database.getInstance();
 
         Admin Ad1 = new Admin("1", "Reda", "reda33@gmail.com", "01024051332");
-        Teacher t = new Teacher("12","mariam","m@m.com","01024051445");
-        Student s = new Student("12","hager","h@h.com","01024051446","female","21","efef");
+        Teacher t = new Teacher("1","mariam","m@m.com","01024051445");
+        Student s = new Student("1","hager","h@h.com","01024051446","female","21","efef");
         Ad1.addTeacher(t);
         Ad1.addStudent(s);
 
@@ -115,7 +115,7 @@ public class Main {
                             System.out.print("To remove student");
                             System.out.print("Please Enter student id\n");
                             String id = sc.next();
-                            Ad1.removeTeacher(id);
+                            Ad1.removeStudent(id);
                             System.out.print("Student removed successfully\n");
                         }
                         // code block

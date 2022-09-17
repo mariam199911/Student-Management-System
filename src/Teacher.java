@@ -60,27 +60,21 @@ public class Teacher {
                 '}';
     }
     public void addCourse(Courses course){
-        Database.getInstance().courses.add(course);
+        Database.getInstance().addCours(course);
     }
 
     public void addAssignment(String courseId,Assignment assignment){
-        if(Database.getInstance().course_assignments.containsKey(courseId)){
-            Database.getInstance().course_assignments.get(this.id).add(assignment);
-        }else {
-            ArrayList<Assignment> assignmentList= new ArrayList<Assignment>();
-            assignmentList.add(assignment);
-            Database.getInstance().course_assignments.put(courseId,assignmentList);
-        }
+      Database.getInstance().addAssignmentinDatabase(courseId,assignment);
     }
 
     public void viewStudentsAssignedCourses(){
-        if(Database.getInstance().course_students.isEmpty()){
+        if(Database.getInstance().getCourse_students().isEmpty()){
             System.out.println("No Students Assigned Courses to view");
         }else {
-            for (String it: Database.getInstance().course_students.keySet()) {
+            for (String it: Database.getInstance().getCourse_students().keySet()) {
                 System.out.println("Course id: "+it);
                 System.out.println("Course Students: ");
-                List<Student> stList = Database.getInstance().course_students.get(it);
+                List<Student> stList = Database.getInstance().getCourse_students().get(it);
                 for (Student s : stList){
                     System.out.println(s);
                 }
@@ -89,11 +83,11 @@ public class Teacher {
     }
 
     public void getStudentsInCourse(String CourseID){
-        if(Database.getInstance().course_students.isEmpty()){
+        if(Database.getInstance().getCourse_students().isEmpty()){
             System.out.println("No available data to show");
         }
-        else if(Database.getInstance().course_students.containsKey(CourseID)){
-            List<Student> stList = Database.getInstance().course_students.get(CourseID);
+        else if(Database.getInstance().getCourse_students().containsKey(CourseID)){
+            List<Student> stList = Database.getInstance().getCourse_students().get(CourseID);
             for (Student s : stList){
                 System.out.println(s);
             }
@@ -103,16 +97,16 @@ public class Teacher {
 
     }
     public void getAllCourses(){
-        for (Courses c: Database.getInstance().courses) {
+        for (Courses c: Database.getInstance().getCourses()) {
             System.out.println(c);
         }
     }
 
     public Student getStudentData(String studentId){
         Student resStudent= new Student ("null" , "null" , "null" , "null", "null" , "null" , "null");
-        for (int i = 0; i < Database.getInstance().students.size(); i++) {
-            if (Database.getInstance().students.get(i).getId().equals(studentId) ) {
-                resStudent = Database.getInstance().students.get(i);
+        for (int i = 0; i < Database.getInstance().getStudents().size(); i++) {
+            if (Database.getInstance().getStudents().get(i).getId().equals(studentId) ) {
+                resStudent = Database.getInstance().getStudents().get(i);
                 System.out.println(resStudent);
             }
         }
@@ -120,6 +114,6 @@ public class Teacher {
     }
 
     public void submitStudentsAttendance(CourseAttendence courseAttendence){
-        Database.getInstance().courseAttendances.add(courseAttendence);
+        Database.getInstance().addCourseAttendances(courseAttendence);
     }
 }

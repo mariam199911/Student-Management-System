@@ -90,26 +90,12 @@ public class Student {
                 '}';
     }
     public void enrollCourse (Courses course) {
-        if(Database.getInstance().student_courses.containsKey(this.id)){
-            Database.getInstance().student_courses.get(this.id).add(course);
-        }else {
-            ArrayList<Courses> coursesList= new ArrayList<Courses>();
-            coursesList.add(course);
-            Database.getInstance().student_courses.put(this.id,coursesList);
-        }
-        //////////////////////////////////////////////////////////////////////
-        if(Database.getInstance().course_students.containsKey(course.getId())){
-            Database.getInstance().course_students.get(course.getId()).add(this);
-        }else {
-            ArrayList<Student> studentsList= new ArrayList<Student>();
-            studentsList.add(this);
-            Database.getInstance().course_students.put(course.getId(),studentsList);
-        }
+    Database.getInstance().enrollCourse(course,this);
     }
 
     public void viewEnrolledCourses () {
-        if(Database.getInstance().student_courses.containsKey(this.id)){
-            for (Courses c :Database.getInstance().student_courses.get(this.id)) {
+        if(Database.getInstance().getStudent_courses().containsKey(this.id)){
+            for (Courses c :Database.getInstance().getStudent_courses().get(this.id)) {
             System.out.println(c);
         }
         }else {
@@ -118,8 +104,8 @@ public class Student {
     }
 
     public void viewAssignments (String courseId) {
-        if(Database.getInstance().course_assignments.containsKey(courseId)){
-            for (Assignment c :Database.getInstance().course_assignments.get(courseId)) {
+        if(Database.getInstance().getCourse_assignments().containsKey(courseId)){
+            for (Assignment c :Database.getInstance().getCourse_assignments().get(courseId)) {
                 System.out.println(c);
             }
         }else {
@@ -129,7 +115,7 @@ public class Student {
     }
 
     public void submitAssignment (AssignmentSubmission assignmentSubmission) {
-        Database.getInstance().assignment_submissions.add(assignmentSubmission);
+        Database.getInstance().addAssignmentsubmission(assignmentSubmission);
     }
 
 

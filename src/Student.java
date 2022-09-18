@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
-public class Student {
+public class Student implements Person{
     private String id;
     private String name;
     private String email;
@@ -18,6 +19,9 @@ public class Student {
         this.gender = gender;
         this.age = age;
         this.address = address;
+    }
+    public Student() {
+
     }
 
     public String getId() {
@@ -119,5 +123,71 @@ public class Student {
     }
 
 
+    @Override
+    public void personfun() {
+        Admin Ad1 = new Admin("1", "Reda", "reda33@gmail.com", "01024051332");
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Hello Student");
+        Student student;
+        {
+            System.out.print("Please enter your ID\n");
+            String id = sc.next();
+            student = Ad1.getStudentDetails(id);
+            if (student == null) {
+                System.out.print("No student with this ID\n");
 
-}
+            }
+        }
+        while (true) {
+            System.out.print("To enroll course 1\n" +
+                    "To view enrolled Courses 2\n" +
+                    "To view enrolled assignments 3\n" +
+                    "To submit assignment 4 \n");
+            int b = sc.nextInt();
+            switch (b) {
+                case 1: {
+                    System.out.print("Please Enter course id\n");
+                    String id = sc.next();
+                    System.out.print("Please Enter course name\n");
+                    String name = sc.next();
+                    student.enrollCourse(new Courses(id, name));
+                }
+                break;
+                case 2: {
+                    System.out.print("All enrolled Courses\n");
+                    student.viewEnrolledCourses();
+                }
+                break;
+                case 3: {
+                    System.out.print("Please Enter course id\n");
+                    String courseId = sc.next();
+                    student.viewAssignments(courseId);
+                }
+                break;
+                case 4: {
+                    System.out.print("Please Enter assignment id\n");
+                    String assignmentId = sc.next();
+                    System.out.print("Please Enter course id\n");
+                    String courseId = sc.next();
+                    System.out.print("Please Enter assignment content\n");
+                    sc.nextLine();
+                    String content = sc.nextLine();
+                    System.out.print("Please Enter assignment mark like [12.6]\n");
+                    float mark = sc.nextFloat();
+                    AssignmentSubmission assignmentSubmission = new AssignmentSubmission(assignmentId,student.getId(),courseId,content,mark);
+                    student.submitAssignment(assignmentSubmission);
+                    System.out.println(assignmentSubmission+"\n"+"submitted successfully"+"\n");
+                }
+                break;
+                default:
+                    System.out.print("Please Enter valid number\n");
+            }
+            System.out.print("Want to SignIn as admin or teacher [y/n]:");
+            String user = sc.next();
+            if (user.equals("y")) {
+                break;
+            }
+        }
+    }
+    }
+

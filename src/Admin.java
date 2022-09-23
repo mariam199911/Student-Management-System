@@ -10,6 +10,9 @@ public class Admin implements Person{
     private String email;
     private String mobileNum;
 
+// Todo: here we should apply single responsibility of class
+
+
     public Admin(String id, String name, String email, String mobileNum) {
         this.id = id;
         this.name = name;
